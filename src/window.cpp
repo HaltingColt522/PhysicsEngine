@@ -7,9 +7,16 @@ const bool enableValidationLayers = true;
 #endif
 
 Window::Window(uint32_t width, uint32_t height) {
-    physicalDevice = VK_NULL_HANDLE;
+    // initializing variables //
     WIDTH = width;
     HEIGHT = height;
+
+    physicalDevice = VK_NULL_HANDLE;
+    debugMessenger = VK_NULL_HANDLE;
+    device = VK_NULL_HANDLE;
+    graphicsQueue = VK_NULL_HANDLE;
+    instance = VK_NULL_HANDLE;
+    window = NULL;
 }
 
 void Window::run() {
