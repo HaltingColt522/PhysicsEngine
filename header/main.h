@@ -25,4 +25,3 @@
 
 #include <window.h>
 #include <debug.h>
-#include <const.h>
