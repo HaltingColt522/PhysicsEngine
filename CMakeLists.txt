@@ -16,8 +16,15 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(glfw)
 
+FetchContent_Declare(glm GIT_REPOSITORY https://github.com/g-truc/glm.git GIT_TAG master)
+
+FetchContent_Populate(glm)
+set(GLM_TEST_ENABLE OFF CACHE BOOL "" FORCE)
+
+FetchContent_MakeAvailable(glm)
+
 file(GLOB SRC_files CONFIGURE_DEPENDS "src/*.h" "src/*.cpp")
 
 add_executable(PhysicsEngine ${SRC_files})
 target_include_directories(${PROJECT_NAME} PUBLIC "header" PUBLIC ${Vulkan_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} PRIVATE glfw Vulkan::Vulkan)
+target_link_libraries(${PROJECT_NAME} PRIVATE glfw glm Vulkan::Vulkan)
