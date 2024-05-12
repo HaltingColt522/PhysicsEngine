@@ -50,3 +50,4 @@ _deps
 =======
 >>>>>>> 21216658ae2ca6722479099f87a04e05ce0ced21
 /.vs
+/CMakeSettings.json
