@@ -25,3 +25,5 @@
 
 #include <window.h>
 #include <debug.h>
+
+#include <glm/common.hpp>

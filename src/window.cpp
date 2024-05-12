@@ -12,9 +12,13 @@ Window::Window(uint32_t width, uint32_t height) {
     device = VK_NULL_HANDLE;
     graphicsQueue = VK_NULL_HANDLE;
     instance = VK_NULL_HANDLE;
-    window = NULL;
+    window = nullptr;
     presentQueue = VK_NULL_HANDLE;
     surface = VK_NULL_HANDLE;
+    swapChain = VK_NULL_HANDLE;
+    swapChainExtent.height = NULL;
+    swapChainExtent.width = NULL;
+
 }
 
 void Window::run() {
