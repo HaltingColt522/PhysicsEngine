@@ -4,4 +4,5 @@
 
 namespace Const {
 	const std::vector<const char*> validationLayers;
+	const std::vector<const char*> deviceExtensions;
 }
