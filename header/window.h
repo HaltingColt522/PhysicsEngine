@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <main.h>
 #include <struct.h>
 
 class Window {   

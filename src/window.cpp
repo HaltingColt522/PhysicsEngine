@@ -44,7 +44,7 @@ void Window::initVulkan() {
 
 void Window::mainLoop() {
     while (!glfwWindowShouldClose(window)) {
-            glfwPollEvents();
+        glfwPollEvents();
     }
 }
 
@@ -68,8 +68,8 @@ void Window::cleanup() {
 
 void Window::createInstance() {
     if (enableValidationLayers && !checkValidationLayerSupport()) {
-            throw std::runtime_error("validation layers requested, but not available!");
-        }
+        throw std::runtime_error("validation layers requested, but not available!");
+    }
 
     VkApplicationInfo appInfo{};
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -93,8 +93,9 @@ void Window::createInstance() {
         createInfo.ppEnabledLayerNames = Const::validationLayers.data();
 
         populateDebugMessengerCreateInfo(debugCreateInfo);
-        createInfo.pNext = (VkDebugUtilsMessengerCreateInfoEXT*) &debugCreateInfo;
-    } else {
+        createInfo.pNext = (VkDebugUtilsMessengerCreateInfoEXT*)&debugCreateInfo;
+    }
+    else {
         createInfo.enabledLayerCount = 0;
 
         createInfo.pNext = nullptr;
@@ -188,7 +189,8 @@ void Window::createLogicalDevice() {
     if (enableValidationLayers) {
         createInfo.enabledLayerCount = static_cast<uint32_t>(Const::validationLayers.size());
         createInfo.ppEnabledLayerNames = Const::validationLayers.data();
-    } else {
+    }
+    else {
         createInfo.enabledLayerCount = 0;
     }
 
@@ -276,7 +278,7 @@ VkPresentModeKHR Window::chooseSwapPresentMode(const std::vector<VkPresentModeKH
 }
 
 VkExtent2D Window::chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities) {
-    if (capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){ // max() -> error E0040 "expected an identifier", in the tutorial it seem to work 
+    if (capabilities.currentExtent.width != (std::numeric_limits<uint32_t>::max)()) {
         return capabilities.currentExtent;
     }
     else {
