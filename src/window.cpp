@@ -6,15 +6,6 @@ const bool enableValidationLayers = false;
 const bool enableValidationLayers = true;
 #endif
 
-struct QueueFamilyIndices {
-    std::optional<uint32_t> graphicsFamily;
-
-    bool isComplete() {
-        return graphicsFamily.has_value();
-    }
-};
-
-
 Window::Window(uint32_t width, uint32_t height) {
     physicalDevice = VK_NULL_HANDLE;
     WIDTH = width;
@@ -27,7 +18,6 @@ void Window::run() {
     mainLoop();
     cleanup();
 }
-
 
 void Window::initWindow() {
     glfwInit();
@@ -184,10 +174,11 @@ void Window::createLogicalDevice() {
 }
 
 bool Window::isDeviceSuitable(VkPhysicalDevice device) {
-    QueueFamilyIndices indices = findQueueFamilies(device);
+    QueueFamilyIndices indices = Window::findQueueFamilies(device);
 
-    return indices.graphicsFamily.has_value();
+    return indices.isComplete();
 }
+
 
 QueueFamilyIndices Window::findQueueFamilies(VkPhysicalDevice device) {
     QueueFamilyIndices indices;

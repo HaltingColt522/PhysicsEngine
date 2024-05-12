@@ -1,9 +1,7 @@
-#include <struct.h>
+#include "struct.h"
 
-struct QueueFamilyIndices {
-    std::optional<uint32_t> graphicsFamily;
+bool QueueFamilyIndices::isComplete() {
+    return graphicsFamily.has_value();
+}
 
-    bool isComplete() {
-        return graphicsFamily.has_value();
-    }
-};
+QueueFamilyIndices indices;

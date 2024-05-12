@@ -3,26 +3,6 @@
   "WorkspaceRootPath": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\debug.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\debug.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\debug.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:header\\debug.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:header\\struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\struct.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\struct.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\window.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\window.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\window.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:header\\window.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -31,16 +11,8 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\const.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\const.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\main.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:header\\main.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\const.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:header\\const.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\window.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\window.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,132 +30,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "struct.cpp",
-              "DocumentMoniker": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\struct.cpp",
-              "RelativeDocumentMoniker": "src\\struct.cpp",
-              "ToolTip": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\struct.cpp",
-              "RelativeToolTip": "src\\struct.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-05-11T22:02:38.397Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "debug.cpp",
-              "DocumentMoniker": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\debug.cpp",
-              "RelativeDocumentMoniker": "src\\debug.cpp",
-              "ToolTip": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\debug.cpp",
-              "RelativeToolTip": "src\\debug.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-05-11T21:56:30.882Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "struct.h",
-              "DocumentMoniker": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\struct.h",
-              "RelativeDocumentMoniker": "header\\struct.h",
-              "ToolTip": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\struct.h",
-              "RelativeToolTip": "header\\struct.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-11T21:56:28.966Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "debug.h",
-              "DocumentMoniker": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\debug.h",
-              "RelativeDocumentMoniker": "header\\debug.h",
-              "ToolTip": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\debug.h",
-              "RelativeToolTip": "header\\debug.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-11T21:56:27.718Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "const.h",
-              "DocumentMoniker": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\const.h",
-              "RelativeDocumentMoniker": "header\\const.h",
-              "ToolTip": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\const.h",
-              "RelativeToolTip": "header\\const.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-11T21:55:12.723Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "main.h",
-              "DocumentMoniker": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\main.h",
-              "RelativeDocumentMoniker": "header\\main.h",
-              "ToolTip": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\main.h",
-              "RelativeToolTip": "header\\main.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-11T21:54:14.468Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "const.cpp",
-              "DocumentMoniker": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\const.cpp",
-              "RelativeDocumentMoniker": "src\\const.cpp",
-              "ToolTip": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\const.cpp",
-              "RelativeToolTip": "src\\const.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-05-11T21:53:51.967Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "window.h",
               "DocumentMoniker": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\window.h",
               "RelativeDocumentMoniker": "header\\window.h",
               "ToolTip": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\header\\window.h",
               "RelativeToolTip": "header\\window.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAARAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-11T20:47:46.173Z",
+              "WhenOpened": "2024-05-12T08:10:37.143Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "window.cpp",
               "DocumentMoniker": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\window.cpp",
               "RelativeDocumentMoniker": "src\\window.cpp",
               "ToolTip": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\window.cpp",
               "RelativeToolTip": "src\\window.cpp",
-              "ViewState": "AQIAAHsAAAAAAAAAAAAAAI4AAAAAAAAA",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACcAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-05-11T20:49:34.004Z",
+              "WhenOpened": "2024-05-12T08:07:09.297Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\main.cpp",
               "RelativeDocumentMoniker": "src\\main.cpp",
               "ToolTip": "C:\\coding\\C\u002B\u002B\\PhysicsEngine\\src\\main.cpp",
               "RelativeToolTip": "src\\main.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAACAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-05-11T16:15:43.237Z",
+              "WhenOpened": "2024-05-12T07:43:25.936Z",
               "EditorCaption": ""
             }
           ]

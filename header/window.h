@@ -1,8 +1,7 @@
 #pragma once
 
 #include <main.h>
-
-struct QueueFamilyIndices;
+#include <struct.h>
 
 class Window {   
 public:
@@ -18,7 +17,7 @@ private:
 
     VkInstance instance;
     VkDebugUtilsMessengerEXT debugMessenger;
-
+    
     VkPhysicalDevice physicalDevice;
 
     VkDevice device;
@@ -33,7 +32,7 @@ private:
     void setupDebugMessenger();
     void pickPhysicalDevice();
     void createLogicalDevice();
-    void isDeviceSuitable();
+    bool isDeviceSuitable(VkPhysicalDevice device);
 
     QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 

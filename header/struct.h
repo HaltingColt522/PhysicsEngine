@@ -1,6 +1,10 @@
 #pragma once
 
-#include <main.h>
+#include <optional>
+#include <cstdint>
 
-struct QueueFamilyIndices;
-QueueFamilyIndices indices;
+struct QueueFamilyIndices {
+    std::optional<uint32_t> graphicsFamily;
+
+    bool isComplete();
+};
