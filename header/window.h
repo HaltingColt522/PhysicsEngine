@@ -55,6 +55,8 @@ private:
     VkFormat swapChainImageFormat;
     VkExtent2D swapChainExtent;
 
+    std::vector<VkImageView> swapChainImageViews;
+
     void initWindow();
     void initVulkan();
     void mainLoop();
@@ -64,6 +66,7 @@ private:
     void setupDebugMessenger();
     void createSurface();
     void createSwapChain();
+    void createImageViews();
     
 
     void pickPhysicalDevice();
