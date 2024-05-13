@@ -57,6 +57,8 @@ private:
 
     std::vector<VkImageView> swapChainImageViews;
 
+    VkPipelineLayout pipelineLayout;
+
     void initWindow();
     void initVulkan();
     void mainLoop();
