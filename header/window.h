@@ -63,6 +63,8 @@ private:
 
     VkPipeline graphicsPipeline;
 
+
+
     void initWindow();
     void initVulkan();
     void mainLoop();
@@ -75,6 +77,7 @@ private:
     void createImageViews();
     void createRenderPass();
     void createGraphicsPipeline();
+    void createFramebuffers();
     VkShaderModule createShaderModule(const std::vector<char>& code);
 
     void pickPhysicalDevice();
@@ -88,6 +91,8 @@ private:
     VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
     VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
     std::vector<const char*> getRequiredExtensions();
+
+    std::vector<VkFramebuffer> swapChainFramebuffers;
 
     bool checkValidationLayerSupport();
 
