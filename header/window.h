@@ -54,16 +54,15 @@ private:
     std::vector<VkImage> swapChainImages;
     VkFormat swapChainImageFormat;
     VkExtent2D swapChainExtent;
-
     std::vector<VkImageView> swapChainImageViews;
 
     VkRenderPass renderPass;
 
     VkPipelineLayout pipelineLayout;
-
     VkPipeline graphicsPipeline;
 
-
+    VkCommandPool commandPool;
+    VkCommandBuffer commandBuffer;
 
     void initWindow();
     void initVulkan();
@@ -78,6 +77,9 @@ private:
     void createRenderPass();
     void createGraphicsPipeline();
     void createFramebuffers();
+    void createCommandPool();
+    void createCommandBuffer();
+    void recordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t imageIndex);
     VkShaderModule createShaderModule(const std::vector<char>& code);
 
     void pickPhysicalDevice();
