@@ -9,7 +9,7 @@ Window::Window(uint32_t width, uint32_t height) {
 
     physicalDevice = VK_NULL_HANDLE;
     debugMessenger = VK_NULL_HANDLE;
-    device = VK_NULL_HANDLE;
+    //device = VK_NULL_HANDLE;
     graphicsQueue = VK_NULL_HANDLE;
     instance = VK_NULL_HANDLE;
     window = nullptr;
@@ -49,6 +49,7 @@ void Window::initVulkan() {
     createFramebuffers();
     createCommandPool();
     createCommandBuffer();
+    createSyncObjects();
 }
 
 void Window::mainLoop() {
@@ -56,6 +57,7 @@ void Window::mainLoop() {
         glfwPollEvents();
         drawFrame();
     }
+    vkDeviceWaitIdle(device);
 }
 
 void Window::cleanup() {
@@ -570,12 +572,13 @@ void Window::createSyncObjects() {
 }
 
 void Window::drawFrame() {
-    uint32_t imageIndex;
-    vkAcquireNextImageKHR(device, swapChain, UINT64_MAX, imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex);
     vkWaitForFences(device, 1, &inFlightFence, VK_TRUE, UINT64_MAX);
     vkResetFences(device, 1, &inFlightFence);
 
-    vkResetCommandBuffer(commandBuffer, 0);
+    uint32_t imageIndex;
+    vkAcquireNextImageKHR(device, swapChain, UINT64_MAX, imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex);
+
+    vkResetCommandBuffer(commandBuffer, /*VkCommandBufferResetFlagBits*/ 0);
     recordCommandBuffer(commandBuffer, imageIndex);
 
     VkSubmitInfo submitInfo{};
@@ -607,8 +610,8 @@ void Window::drawFrame() {
     VkSwapchainKHR swapChains[] = { swapChain };
     presentInfo.swapchainCount = 1;
     presentInfo.pSwapchains = swapChains;
+
     presentInfo.pImageIndices = &imageIndex;
-    presentInfo.pResults = nullptr; // Optional
 
     vkQueuePresentKHR(presentQueue, &presentInfo);
 }
