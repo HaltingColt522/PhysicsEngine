@@ -64,6 +64,10 @@ private:
     VkCommandPool commandPool;
     VkCommandBuffer commandBuffer;
 
+    VkSemaphore imageAvailableSemaphore;
+    VkSemaphore renderFinishedSemaphore;
+    VkFence inFlightFence;
+
     void initWindow();
     void initVulkan();
     void mainLoop();
@@ -81,6 +85,9 @@ private:
     void createCommandBuffer();
     void recordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t imageIndex);
     VkShaderModule createShaderModule(const std::vector<char>& code);
+    
+    void createSyncObjects();
+    void drawFrame();
 
     void pickPhysicalDevice();
     void createLogicalDevice();
