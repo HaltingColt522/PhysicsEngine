@@ -10,6 +10,8 @@ namespace Const {
     const std::vector<const char*> deviceExtensions = {
         VK_KHR_SWAPCHAIN_EXTENSION_NAME
     };
+
+    const int MAX_FRAMES_IN_FLIGHT = 2;
 }
 
 struct QueueFamilyIndices {
@@ -62,7 +64,12 @@ private:
     VkPipeline graphicsPipeline;
 
     VkCommandPool commandPool;
-    VkCommandBuffer commandBuffer;
+    std::vector<VkCommandBuffer> commandBuffers;
+
+    std::vector<VkSemaphore> imageAvailableSemaphores;
+    std::vector<VkSemaphore> renderFinishedSemaphores;
+    std::vector<VkFence> inFlightFences;
+    uint32_t currentFrame = 0;
 
     VkSemaphore imageAvailableSemaphore;
     VkSemaphore renderFinishedSemaphore;
@@ -72,17 +79,19 @@ private:
     void initVulkan();
     void mainLoop();
     void cleanup();
+    void cleanupSwapChain();
     void createInstance();
     void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
     void setupDebugMessenger();
     void createSurface();
     void createSwapChain();
+    void recreateSwapChain();
     void createImageViews();
     void createRenderPass();
     void createGraphicsPipeline();
     void createFramebuffers();
     void createCommandPool();
-    void createCommandBuffer();
+    void createCommandBuffers();
     void recordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t imageIndex);
     VkShaderModule createShaderModule(const std::vector<char>& code);
     
@@ -102,6 +111,8 @@ private:
     std::vector<const char*> getRequiredExtensions();
 
     std::vector<VkFramebuffer> swapChainFramebuffers;
+
+
 
     bool checkValidationLayerSupport();
 
