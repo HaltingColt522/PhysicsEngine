@@ -103,6 +103,8 @@ private:
     bool isDeviceSuitable(VkPhysicalDevice device);
     bool checkDeviceExtensionSupport(VkPhysicalDevice device);
 
+    static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
+
     QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
     SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
     VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
@@ -112,7 +114,7 @@ private:
 
     std::vector<VkFramebuffer> swapChainFramebuffers;
 
-
+    bool framebufferResized;
 
     bool checkValidationLayerSupport();
 
