@@ -28,3 +28,9 @@ file(GLOB SRC_files CONFIGURE_DEPENDS "src/*.h" "src/*.cpp")
 add_executable(PhysicsEngine ${SRC_files})
 target_include_directories(${PROJECT_NAME} PUBLIC "header" PUBLIC ${Vulkan_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw Vulkan::Vulkan glm)
+
+add_custom_command(
+        TARGET PhysicsEngine POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different
+                ${CMAKE_SOURCE_DIR}/shaders
+                ${CMAKE_CURRENT_BINARY_DIR}/shaders)
