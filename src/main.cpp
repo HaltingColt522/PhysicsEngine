@@ -1,10 +1,12 @@
 #include <main.h>
 
 int main() {
-    Window app(800, 600);
+    vkInstance instance;
+    Window window;
 
     try {
-        app.run();
+        instance.create();
+        window.create(instance.instance, "Test Window");
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return EXIT_FAILURE;
