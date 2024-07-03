@@ -1,12 +1,9 @@
 #include <main.h>
+#include <windowproc.h>
 
-void Window::create(VkInstance instance, LPCSTR wintext) {
-	createSurface(instance, createwin32window(wintext));
-}
-
-HWND Window::createwin32window(LPCSTR wintext) {
-    // Register the window class.
-    LPCSTR CLASS_NAME = "PhysicsEngine";
+void Window::setup() {
+    //only execute once
+    LPCSTR CLASS_NAME = "engine";
 
     WNDCLASS wc = { };
 
@@ -15,13 +12,17 @@ HWND Window::createwin32window(LPCSTR wintext) {
     wc.lpszClassName = CLASS_NAME;
 
     RegisterClass(&wc);
+}
 
-    // Create the window.
+WINDOW Window::create(VkInstance instance, LPCSTR winheader) {
+    WINDOW window = {};
+
+    // creating win32 window //
 
     HWND hwnd = CreateWindowEx(
         0,                              // Optional window styles.
-        CLASS_NAME,                     // Window class
-        wintext,    // Window text
+        "engine",                     // Window class
+        winheader,    // Window text
         WS_OVERLAPPEDWINDOW,            // Window style
 
         // Size and position
@@ -33,26 +34,53 @@ HWND Window::createwin32window(LPCSTR wintext) {
         NULL        // Additional application data
     );
 
-    if (hwnd == NULL) {
-        std::runtime_error("failed to create win32 window");
+    if (hwnd == NULL)
+    {
+        throw std::runtime_error("failed to create win32 window");
     }
 
     ShowWindow(hwnd, 1);
 
-    return hwnd;
+    window.handle = hwnd;
+
+    // creating VkSurface //
+
+    VkSurfaceKHR surface = NULL;
+
+    VkWin32SurfaceCreateInfoKHR win32createinfo = {};
+    win32createinfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
+    win32createinfo.pNext = NULL;
+    win32createinfo.flags = NULL;
+    win32createinfo.hinstance = GetModuleHandle(NULL);
+    win32createinfo.hwnd = hwnd;
+
+    if (vkCreateWin32SurfaceKHR(instance, &win32createinfo, NULL, &surface) != VK_SUCCESS) {
+        throw std::runtime_error("failed to create vksurface");
+    }
+
+    window.surface = surface;
+
+    return window;
 }
 
-void Window::createSurface(VkInstance instance, HWND hwnd) {
+void Window::mainloop(std::vector<HWND>* win_handle) {
+    MSG msg = { };
+    bool NOWINDOW = TRUE;
 
-    VkWin32SurfaceCreateInfoKHR surfaceInfo{};
-	surfaceInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
-	surfaceInfo.pNext = NULL;
-	surfaceInfo.flags = 0;
-	surfaceInfo.hinstance = GetModuleHandle(NULL);
-    surfaceInfo.hwnd = hwnd;
+    while (GetMessage(&msg, NULL, 0, 0) > 0)
+    {   
+        //check if there is a window
+        for (HWND window : *win_handle) {
+            if (IsWindow(window)) { NOWINDOW = FALSE; }
+        }
 
-
-	if (vkCreateWin32SurfaceKHR(instance, &surfaceInfo, NULL, &surface) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create win32 surface");
-	}
+        if (NOWINDOW == FALSE) {
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+        }
+        else {
+            PostQuitMessage(0);
+        }
+        NOWINDOW = TRUE;
+    }
 }

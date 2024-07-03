@@ -10,7 +10,6 @@ void vkInstance::initVulkan() {
 }
 
 void vkInstance::cleanup() {
-    vkDestroyDevice(device, nullptr);
 
     if (enableValidationLayers) {
         Debug::DestroyDebugUtilsMessengerEXT(instance, debugMessenger, nullptr);
