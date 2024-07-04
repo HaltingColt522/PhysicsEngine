@@ -1,5 +1,5 @@
 #include <vkSetup.h>
 
-void winsetup(WINDOW* window, VkInstance instance) {
-
+void Vulkan::winsetup(WINDOW* window, VkInstance instance) {
+	// Vulkan KHR surface //
 }
