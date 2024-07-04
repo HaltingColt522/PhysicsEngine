@@ -1,4 +1,4 @@
-#include <main.h>
+#include <win32Window.h>
 #include <windowproc.h>
 
 void Window::setup() {
@@ -14,8 +14,7 @@ void Window::setup() {
     RegisterClass(&wc);
 }
 
-WINDOW Window::create(VkInstance instance, LPCSTR winheader) {
-    WINDOW window = {};
+void Window::create(WINDOW* window, VkInstance instance, LPCSTR winheader) {
 
     // creating win32 window //
 
@@ -41,26 +40,9 @@ WINDOW Window::create(VkInstance instance, LPCSTR winheader) {
 
     ShowWindow(hwnd, 1);
 
-    window.handle = hwnd;
+    window->handle = hwnd;
 
-    // creating VkSurface //
-
-    VkSurfaceKHR surface = NULL;
-
-    VkWin32SurfaceCreateInfoKHR win32createinfo = {};
-    win32createinfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
-    win32createinfo.pNext = NULL;
-    win32createinfo.flags = NULL;
-    win32createinfo.hinstance = GetModuleHandle(NULL);
-    win32createinfo.hwnd = hwnd;
-
-    if (vkCreateWin32SurfaceKHR(instance, &win32createinfo, NULL, &surface) != VK_SUCCESS) {
-        throw std::runtime_error("failed to create vksurface");
-    }
-
-    window.surface = surface;
-
-    return window;
+    Vulkan::winsetup(window, instance);
 }
 
 void Window::mainloop(std::vector<HWND>* win_handle) {

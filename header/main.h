@@ -17,10 +17,6 @@
 #include <optional>
 #include <set>
 
-#include <vkInstance.h>
-#include <win32Surface.h>
-#include <debug.h>
-
 #include <glm/common.hpp>
 
 #include <fstream>

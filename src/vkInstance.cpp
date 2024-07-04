@@ -1,25 +1,26 @@
-#include <main.h>
+#include <vkSetup.h>
 
-void vkInstance::create() {
-    initVulkan();
+void createInstance(VKSETUP* setup);
+void setupDebugMessenger(VKSETUP* setup);
+std::vector<const char*> getRequiredExtensions();
+void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
+VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData);
+
+void Vulkan::instance(VKSETUP* setup) {
+    createInstance(setup);
+    setupDebugMessenger(setup);
 }
 
-void vkInstance::initVulkan() {
-    createInstance();
-    setupDebugMessenger();
-}
-
-void vkInstance::cleanup() {
+void Vulkan::destroyInstance(VKSETUP* setup) {
 
     if (enableValidationLayers) {
-        Debug::DestroyDebugUtilsMessengerEXT(instance, debugMessenger, nullptr);
+        Debug::DestroyDebugUtilsMessengerEXT(setup->instance, setup->debugMessenger, nullptr);
     }
 
-    vkDestroyInstance(instance, nullptr);
+    vkDestroyInstance(setup->instance, nullptr);
 }
 
-
-void vkInstance::createInstance() {
+void createInstance(VKSETUP* setup) {
     VkApplicationInfo appInfo{};
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
     appInfo.pApplicationName = "Hello Triangle";
@@ -50,12 +51,13 @@ void vkInstance::createInstance() {
         createInfo.pNext = nullptr;
     }
 
-    if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
+    if (vkCreateInstance(&createInfo, nullptr, &setup->instance) != VK_SUCCESS) {
         throw std::runtime_error("failed to create instance!");
     }
+
 }
 
-void vkInstance::populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo) {
+void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo) {
     createInfo = {};
     createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
     createInfo.messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
@@ -63,18 +65,18 @@ void vkInstance::populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInf
     createInfo.pfnUserCallback = debugCallback;
 }
 
-void vkInstance::setupDebugMessenger() {
+void setupDebugMessenger(VKSETUP* setup) {
     if (!enableValidationLayers) return;
 
     VkDebugUtilsMessengerCreateInfoEXT createInfo;
     populateDebugMessengerCreateInfo(createInfo);
 
-    if (Debug::CreateDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &debugMessenger) != VK_SUCCESS) {
+    if (Debug::CreateDebugUtilsMessengerEXT(setup->instance, &createInfo, nullptr, &setup->debugMessenger) != VK_SUCCESS) {
         throw std::runtime_error("failed to set up debug messenger!");
     }
 }
 
-std::vector<const char*> vkInstance::getRequiredExtensions() {
+std::vector<const char*> getRequiredExtensions() {
 
     std::vector<const char*> extensions;
 
@@ -88,7 +90,7 @@ std::vector<const char*> vkInstance::getRequiredExtensions() {
     return extensions;
 }
 
-bool vkInstance::checkValidationLayerSupport() {
+bool checkValidationLayerSupport() {
     uint32_t layerCount;
     vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
 
@@ -113,7 +115,7 @@ bool vkInstance::checkValidationLayerSupport() {
     return true;
 }
 
-VKAPI_ATTR VkBool32 VKAPI_CALL vkInstance::debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData) {
+VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData) {
     std::cerr << "validation layer: " << pCallbackData->pMessage << std::endl;
 
     return VK_FALSE;

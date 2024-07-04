@@ -1,25 +1,21 @@
 #include <main.h>
+#include <vkSetup.h>
+#include <win32Window.h>
 
 int main() {
-    vkInstance instance;
-    Window::setup(); //should only be called once & should be called before using namespace !!
+	VKSETUP setup; //Instance and DebugMessenger
+	WINDOW window1, window2;
 
-    try {
-        instance.create();
+	Vulkan::instance(&setup); //creates the instance and debugmessenger
 
-        std::vector<HWND> win_handle_list;
+	Window::setup();
 
-        WINDOW window1 = Window::create(instance.instance, "test1");
-        win_handle_list.push_back(window1.handle);
-        WINDOW window2 = Window::create(instance.instance, "test2");
-        win_handle_list.push_back(window2.handle);
+	Window::create(&window1, setup.instance, "test1");
+	Window::create(&window2, setup.instance, "test2");
 
-        Window::mainloop(&win_handle_list);
+	std::vector<HWND> win_handle_list;
+	win_handle_list.push_back(window1.handle);
+	win_handle_list.push_back(window2.handle);
 
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl;
-        return EXIT_FAILURE;
-    }
-
-    return EXIT_SUCCESS;
+	Window::mainloop(&win_handle_list);
 }
