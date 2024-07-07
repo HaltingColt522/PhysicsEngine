@@ -15,15 +15,6 @@ namespace Const {
     const int MAX_FRAMES_IN_FLIGHT = 2;
 }
 
-struct QueueFamilyIndices {
-    std::optional<uint32_t> graphicsFamily;
-    std::optional<uint32_t> presentFamily;
-
-    inline bool isComplete() const {
-        return graphicsFamily.has_value() && presentFamily.has_value();
-    }
-};
-
 struct VKSETUP {
     VkInstance instance;
     VkDebugUtilsMessengerEXT debugMessenger;
