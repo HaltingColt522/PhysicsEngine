@@ -1,7 +1,7 @@
 #pragma once
 
 #include <main.h>
-#include <vkSetup.h>
+#include <vkSetup/vkSetup.h>
 
 namespace Window {
 	void setup();

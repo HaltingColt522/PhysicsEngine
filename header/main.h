@@ -25,3 +25,33 @@
 #define Unicode
 #endif
 #include "Windows.h"
+
+namespace Const {
+    const std::vector<const char*> validationLayers = {
+        "VK_LAYER_KHRONOS_validation"
+    };
+
+    const std::vector<const char*> deviceExtensions = {
+        VK_KHR_SWAPCHAIN_EXTENSION_NAME
+    };
+
+    const int MAX_FRAMES_IN_FLIGHT = 2;
+}
+
+struct WINDOW {
+    HWND handle;
+
+    VkSurfaceKHR surface;
+
+    VkPhysicalDevice physicalDevice;
+    VkDevice device;
+
+    VkQueue graphicsQueue;
+    VkQueue presentQueue;
+
+    VkSwapchainKHR swapChain;
+    std::vector<VkImage> swapChainImages;
+    VkFormat swapChainImageFormat;
+    VkExtent2D swapChainExtent;
+    std::vector<VkImageView> swapChainImageViews;
+};

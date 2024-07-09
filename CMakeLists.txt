@@ -15,10 +15,10 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(glm)
 
-file(GLOB SRC_files CONFIGURE_DEPENDS "src/*.h" "src/*.cpp")
+file(GLOB SRC_files CONFIGURE_DEPENDS "src/*.cpp" "src/vkSetup/*.cpp")
 
 add_executable(PhysicsEngine ${SRC_files})
-target_include_directories(${PROJECT_NAME} PUBLIC "header" PUBLIC ${Vulkan_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PUBLIC "header" PUBLIC  ${Vulkan_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE Vulkan::Vulkan glm)
 
 add_custom_command(

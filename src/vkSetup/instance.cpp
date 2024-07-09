@@ -1,26 +1,27 @@
-#include <vkSetup.h>
+#include <vkSetup/vkSetup.h>
+#include <vkSetup/debug.h>
 
-void createInstance(VKSETUP* setup);
-void setupDebugMessenger(VKSETUP* setup);
+void createInstance(INSTANCE* instance);
+void setupDebugMessenger(INSTANCE* instance);
 std::vector<const char*> getRequiredExtensions();
 void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
 VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData);
 
-void Vulkan::instance(VKSETUP* setup) {
-    createInstance(setup);
-    setupDebugMessenger(setup);
+void Vulkan::instance(INSTANCE* instance) {
+    createInstance(instance);
+    setupDebugMessenger(instance);
 }
 
-void Vulkan::destroyInstance(VKSETUP* setup) {
+void Vulkan::destroyInstance(INSTANCE* instance) {
 
     if (enableValidationLayers) {
-        Debug::DestroyDebugUtilsMessengerEXT(setup->instance, setup->debugMessenger, nullptr);
+        Debug::DestroyDebugUtilsMessengerEXT(instance->instance, instance->debugMessenger, nullptr);
     }
 
-    vkDestroyInstance(setup->instance, nullptr);
+    vkDestroyInstance(instance->instance, nullptr);
 }
 
-void createInstance(VKSETUP* setup) {
+void createInstance(INSTANCE* instance) {
     VkApplicationInfo appInfo{};
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
     appInfo.pApplicationName = "Hello Triangle";
@@ -51,7 +52,7 @@ void createInstance(VKSETUP* setup) {
         createInfo.pNext = nullptr;
     }
 
-    if (vkCreateInstance(&createInfo, nullptr, &setup->instance) != VK_SUCCESS) {
+    if (vkCreateInstance(&createInfo, nullptr, &instance->instance) != VK_SUCCESS) {
         throw std::runtime_error("failed to create instance!");
     }
 
@@ -65,13 +66,13 @@ void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& create
     createInfo.pfnUserCallback = debugCallback;
 }
 
-void setupDebugMessenger(VKSETUP* setup) {
+void setupDebugMessenger(INSTANCE* instance) {
     if (!enableValidationLayers) return;
 
     VkDebugUtilsMessengerCreateInfoEXT createInfo;
     populateDebugMessengerCreateInfo(createInfo);
 
-    if (Debug::CreateDebugUtilsMessengerEXT(setup->instance, &createInfo, nullptr, &setup->debugMessenger) != VK_SUCCESS) {
+    if (Debug::CreateDebugUtilsMessengerEXT(instance->instance, &createInfo, nullptr, &instance->debugMessenger) != VK_SUCCESS) {
         throw std::runtime_error("failed to set up debug messenger!");
     }
 }
