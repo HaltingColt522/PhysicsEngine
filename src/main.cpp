@@ -19,7 +19,22 @@ int main() {
 
 	Window::mainloop(&win_handle_list);
 
-	//TODO: destroy all child of instance in winproc -> example: swapchain, physical device
-	//V
-	//Vulkan::destroyInstance(&instance);
+	/*	TODO: make one func to cleanup everything at once.Maybe use a for loop to destroy all
+		stuff of every single window. I guesse we just need a list of windows for it, to access 
+		every element on the list -> element represents a window.
+
+		Idea:
+		std::vector<WINDOW> win_list;
+
+		for(uint32_t i=0; win_list.size(); i++) {
+			Vulkan::cleanup(&win_list[i], instance);
+		}
+
+		I have to think about it later. For now i´ll just hardcode it for every single window.
+	*/
+
+	Vulkan::cleanup(&window1, instance);
+	Vulkan::cleanup(&window2, instance);
+
+	Vulkan::destroyInstance(&instance);
 }

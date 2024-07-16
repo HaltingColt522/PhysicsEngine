@@ -3,10 +3,11 @@
 #include <vkSetup/physicalDevice.h>
 #include <vkSetup/logicalDevice.h>
 #include <vkSetup/swapchain.h>
+#include <vkSetup/imageView.h>
+#include <vkSetup/debug.h>
 
 void Vulkan::winsetup(WINDOW* window, VkInstance instance) {
 
-	//creating VKSURFACE //
 	VkWin32SurfaceCreateInfoKHR surfaceCreateInfo = {};
 	surfaceCreateInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
 	surfaceCreateInfo.pNext = NULL;
@@ -18,15 +19,27 @@ void Vulkan::winsetup(WINDOW* window, VkInstance instance) {
 		throw std::runtime_error("failed to create VkSurface for win32 window");
 	}
 
-	// picking physical device //
-
 	pickPhysicalDevice(window, instance);
-
-	// creating logical device //
 
 	createLogicalDevice(window);
 
-	// creating Swapchain //
-
 	createSwapChain(window);
+
+	createImageViews(window);
+}
+
+void Vulkan::cleanup(WINDOW* window, INSTANCE instance) {
+	for (auto imageView : window->swapChainImageViews) {
+		vkDestroyImageView(window->device, imageView, nullptr);
+	}
+
+	vkDestroySwapchainKHR(window->device, window->swapChain, nullptr);
+	vkDestroyDevice(window->device, nullptr);
+
+	if (enableValidationLayers) {
+		Debug::DestroyDebugUtilsMessengerEXT(instance.instance, instance.debugMessenger, nullptr);
+	}
+
+	vkDestroySurfaceKHR(instance.instance, window->surface, nullptr);
+
 }
