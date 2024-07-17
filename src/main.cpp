@@ -1,3 +1,16 @@
+/*
+ * ************************** PHYSICS - ENGINE ******************************
+ * Project: PhysicsEngine
+ * Filename: main.cpp
+ * Description:
+ * Author: github/tilschaller ||| github/HaltingColt522
+ * Created: 2024-04-07 11:35 pm UTC 
+ * Last Modified: 2024-07-17
+ * Version: 1.0.X It will become 1.1 when Win32 is merged into Main
+ * Dependencies: <iostream>
+ * **************************************************************************
+ */
+
 #include <main.h>
 #include <vkSetup/vkSetup.h>
 #include <win32Window.h>
@@ -23,7 +36,13 @@ int main() {
 
 	Window::mainloop(&win_handle_list);
 
-	Window::cleanupAllWindows(window_list, instance);
+	/*	******************* BIG TODO *******************
+	*	Fix cleanup function. The  function  underneath
+	*	cannot  destroy  everything.  Probably  has  to 
+	*	include   in   Windowproc -> case WM_NCDESTROY.
+	*/
+
+	//Window::cleanupAllWindows(window_list, instance);
 
 	Vulkan::destroyInstance(&instance);
 }

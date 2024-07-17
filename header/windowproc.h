@@ -14,6 +14,11 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         DestroyWindow(hwnd);
     }
     return 0;
+    case WM_NCDESTROY: {
+        //Vulkan::cleanup(window, instance);
+    }
+
+    return 0;
 
     case WM_PAINT: {
         PAINTSTRUCT ps;

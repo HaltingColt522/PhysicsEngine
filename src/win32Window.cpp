@@ -69,6 +69,14 @@ void Window::mainloop(std::vector<HWND>* win_handle) {
 
 void Window::cleanupAllWindows(std::vector<WINDOW*> window_list, INSTANCE instance) {
     for (uint32_t i = 0; i < window_list.size(); i++) {
+        std::cout << window_list[i] << std::endl;
         Vulkan::cleanup(window_list[i], instance);
+        if (window_list[i]->swapChain != 0) {
+        std::cout << window_list[i] << std::endl;
+        }
+        else {
+            std::cout << "cleanup success" << std::endl;
+        }
+        
     }
 }
