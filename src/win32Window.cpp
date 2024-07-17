@@ -66,3 +66,9 @@ void Window::mainloop(std::vector<HWND>* win_handle) {
         NOWINDOW = TRUE;
     }
 }
+
+void Window::cleanupAllWindows(std::vector<WINDOW*> window_list, INSTANCE instance) {
+    for (uint32_t i = 0; i < window_list.size(); i++) {
+        Vulkan::cleanup(window_list[i], instance);
+    }
+}

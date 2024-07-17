@@ -3,10 +3,14 @@
 #include <win32Window.h>
 
 int main() {
-	INSTANCE instance; //Instance and DebugMessenger
+	INSTANCE instance; // Instance and DebugMessenger //
 	WINDOW window1, window2;
+	std::vector<WINDOW*> window_list;
 
-	Vulkan::instance(&instance); //creates the instance and debugmessenger
+	window_list.push_back(&window1);
+	window_list.push_back(&window2);
+
+	Vulkan::setupInstance(&instance); // creates the instance and debugmessenger //
 
 	Window::setup();
 
@@ -19,22 +23,7 @@ int main() {
 
 	Window::mainloop(&win_handle_list);
 
-	/*	TODO: make one func to cleanup everything at once.Maybe use a for loop to destroy all
-		stuff of every single window. I guesse we just need a list of windows for it, to access 
-		every element on the list -> element represents a window.
-
-		Idea:
-		std::vector<WINDOW> win_list;
-
-		for(uint32_t i=0; win_list.size(); i++) {
-			Vulkan::cleanup(&win_list[i], instance);
-		}
-
-		I have to think about it later. For now i´ll just hardcode it for every single window.
-	*/
-
-	Vulkan::cleanup(&window1, instance);
-	Vulkan::cleanup(&window2, instance);
+	Window::cleanupAllWindows(window_list, instance);
 
 	Vulkan::destroyInstance(&instance);
 }

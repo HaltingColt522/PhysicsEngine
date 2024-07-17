@@ -7,7 +7,7 @@ std::vector<const char*> getRequiredExtensions();
 void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
 VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData);
 
-void Vulkan::instance(INSTANCE* instance) {
+void Vulkan::setupInstance(INSTANCE* instance) {
     createInstance(instance);
     setupDebugMessenger(instance);
 }
