@@ -6,14 +6,14 @@
 #include <vkSetup/imageView.h>
 #include <vkSetup/debug.h>
 
-void Vulkan::winsetup(WINDOW* window, VkInstance instance) {
+void Vulkan::winsetup(WINDOW* window, VkInstance instance, HWND handle) {
 
 	VkWin32SurfaceCreateInfoKHR surfaceCreateInfo = {};
 	surfaceCreateInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
 	surfaceCreateInfo.pNext = NULL;
 	surfaceCreateInfo.flags = 0;
 	surfaceCreateInfo.hinstance = GetModuleHandle(NULL);
-	surfaceCreateInfo.hwnd = window->handle;
+	surfaceCreateInfo.hwnd = handle;
 
 	if (vkCreateWin32SurfaceKHR(instance, &surfaceCreateInfo, NULL, &window->surface) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create VkSurface for win32 window");
@@ -23,7 +23,7 @@ void Vulkan::winsetup(WINDOW* window, VkInstance instance) {
 
 	createLogicalDevice(window);
 
-	createSwapChain(window);
+	createSwapChain(window, handle);
 
 	createImageViews(window);
 }

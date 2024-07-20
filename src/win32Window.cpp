@@ -10,11 +10,13 @@ void Window::setup() {
     wc.lpfnWndProc = WindowProc;
     wc.hInstance = GetModuleHandle(NULL);
     wc.lpszClassName = CLASS_NAME;
+    wc.cbWndExtra = sizeof(LONG_PTR);
 
     RegisterClass(&wc);
 }
 
-void Window::create(WINDOW* window, VkInstance instance, LPCSTR winheader) {
+HWND Window::create(VkInstance instance, LPCSTR winheader) {
+    WINDOW* window = new WINDOW; // this is delteted in windowproc, i hope
 
     // creating win32 window //
 
@@ -40,9 +42,11 @@ void Window::create(WINDOW* window, VkInstance instance, LPCSTR winheader) {
 
     ShowWindow(hwnd, 1);
 
-    window->handle = hwnd;
+    Vulkan::winsetup(window, instance, hwnd);
 
-    Vulkan::winsetup(window, instance);
+    SetWindowLongPtr(hwnd, 0, (LONG_PTR)window); // store window struct in hwnd
+
+    return hwnd;
 }
 
 void Window::mainloop(std::vector<HWND>* win_handle) {
@@ -64,19 +68,5 @@ void Window::mainloop(std::vector<HWND>* win_handle) {
             PostQuitMessage(0);
         }
         NOWINDOW = TRUE;
-    }
-}
-
-void Window::cleanupAllWindows(std::vector<WINDOW*> window_list, INSTANCE instance) {
-    for (uint32_t i = 0; i < window_list.size(); i++) {
-        std::cout << window_list[i] << std::endl;
-        Vulkan::cleanup(window_list[i], instance);
-        if (window_list[i]->swapChain != 0) {
-        std::cout << window_list[i] << std::endl;
-        }
-        else {
-            std::cout << "cleanup success" << std::endl;
-        }
-        
     }
 }

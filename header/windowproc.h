@@ -5,8 +5,8 @@
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-    // WNDCLASSA WndClass = {};
-    // GetClassInfoA(GetModuleHandle(NULL), "Physics Engine", &WndClass);
+    //getting info about window
+    WINDOW* window = (WINDOW*)GetWindowLongPtr(hwnd, 0);
 
     switch (uMsg)
     {
@@ -16,6 +16,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     return 0;
     case WM_NCDESTROY: {
         //Vulkan::cleanup(window, instance);
+        delete window;
     }
 
     return 0;

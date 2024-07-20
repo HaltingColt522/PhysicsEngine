@@ -5,8 +5,7 @@
 
 namespace Window {
 	void setup();
-	void create(WINDOW* window, VkInstance instance, LPCSTR winheader);
+	HWND create(VkInstance instance, LPCSTR winheader);
 
-	void mainloop(std::vector<HWND>* win_handle);
-	void cleanupAllWindows(std::vector<WINDOW*> window_list, INSTANCE instance);
+	void mainloop(std::vector<HWND>* win_handle_list);
 }

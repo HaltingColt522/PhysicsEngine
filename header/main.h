@@ -39,8 +39,6 @@ namespace Const {
 }
 
 struct WINDOW {
-    HWND handle;
-
     VkSurfaceKHR surface;
 
     VkPhysicalDevice physicalDevice;

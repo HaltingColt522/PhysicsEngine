@@ -5,12 +5,12 @@ VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& avai
 VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities, HWND handle);
 
-void createSwapChain(WINDOW* window) {
+void createSwapChain(WINDOW* window, HWND handle) {
     SwapChainSupportDetails swapChainSupport = querySwapChainSupport(window->physicalDevice, window->surface);
 
     VkSurfaceFormatKHR surfaceFormat = chooseSwapSurfaceFormat(swapChainSupport.formats);
     VkPresentModeKHR presentMode = chooseSwapPresentMode(swapChainSupport.presentModes);
-    VkExtent2D extent = chooseSwapExtent(swapChainSupport.capabilities, window->handle);
+    VkExtent2D extent = chooseSwapExtent(swapChainSupport.capabilities, handle);
 
     uint32_t imageCount = swapChainSupport.capabilities.minImageCount + 1;
 

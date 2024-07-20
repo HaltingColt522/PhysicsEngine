@@ -1,6 +1,6 @@
 #include <main.h>
 
-void createSwapChain(WINDOW* window);
+void createSwapChain(WINDOW* window, HWND handle);
 
 //TODO: do these in a file not accessible by main
 struct SwapChainSupportDetails {
