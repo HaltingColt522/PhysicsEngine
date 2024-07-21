@@ -29,5 +29,7 @@ int main() {
 
 	Window::mainloop(&win_handle_list);
 
+	std::cout << win_handle_list.size();
+
 	Vulkan::destroyInstance(&instance);
 }

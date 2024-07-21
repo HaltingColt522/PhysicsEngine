@@ -52,13 +52,17 @@ HWND Window::create(VkInstance instance, LPCSTR winheader) {
 void Window::mainloop(std::vector<HWND>* win_handle) {
     MSG msg = { };
     bool NOWINDOW = TRUE;
+    int counter = -1;
 
     while (GetMessage(&msg, NULL, 0, 0) > 0)
     {   
         //check if there is a window
         for (HWND window : *win_handle) {
+            counter += 1;
             if (IsWindow(window)) { NOWINDOW = FALSE; }
+            else { win_handle->erase(win_handle->begin()+counter); }
         }
+        counter = -1;
 
         if (NOWINDOW == FALSE) {
             TranslateMessage(&msg);
