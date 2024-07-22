@@ -1,8 +1,6 @@
-#include <main.h>
+#pragma once
 
-void createSwapChain(WINDOW* window, HWND handle);
 
-//TODO: do these in a file not accessible by main
 struct SwapChainSupportDetails {
     VkSurfaceCapabilitiesKHR capabilities;
     std::vector<VkSurfaceFormatKHR> formats;

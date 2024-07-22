@@ -1,7 +1,7 @@
 #include <win32Window.h>
 #include <windowproc.h>
 
-void Window::setup() {
+void Window::setup(VkInstance instance) {
     //only execute once
     LPCSTR CLASS_NAME = "engine";
 
@@ -10,6 +10,7 @@ void Window::setup() {
     wc.lpfnWndProc = WindowProc;
     wc.hInstance = GetModuleHandle(NULL);
     wc.lpszClassName = CLASS_NAME;
+    wc.cbClsExtra = sizeof(LONG_PTR);
     wc.cbWndExtra = sizeof(LONG_PTR);
 
     RegisterClass(&wc);
@@ -45,6 +46,11 @@ HWND Window::create(VkInstance instance, LPCSTR winheader) {
     Vulkan::winsetup(window, instance, hwnd);
 
     SetWindowLongPtr(hwnd, 0, (LONG_PTR)window); // store window struct in hwnd
+
+    
+    if (GetClassLongPtr(hwnd, 0) == 0) {
+        SetClassLongPtr(hwnd, 0, (LONG_PTR)instance);
+    }
 
     return hwnd;
 }

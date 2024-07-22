@@ -1,6 +1,7 @@
 #include <vkSetup/physicalDevice.h>
 #include <vkSetup/queueFamily.h>
-#include <vkSetup/swapchain.h>
+#include <vkSetup/swapchain/swapchain.h>
+#include <vkSetup/swapchain/swapchainsupportdetails.h>
 
 
 bool isDeviceSuitable(VkPhysicalDevice device, VkSurfaceKHR surface);

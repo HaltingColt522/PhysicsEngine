@@ -4,7 +4,7 @@
 #include <vkSetup/vkSetup.h>
 
 namespace Window {
-	void setup();
+	void setup(VkInstance instance);
 	HWND create(VkInstance instance, LPCSTR winheader);
 
 	void mainloop(std::vector<HWND>* win_handle_list);

@@ -7,7 +7,7 @@
  * Created: 2024-04-07 11:35 pm UTC 
  * Last Modified: 2024-07-17
  * Version: 1.0.X It will become 1.1 when Win32 is merged into Main
- * Dependencies: <iostream>
+ * Dependencies: <main.h>, <win32Window.h>, <vkSetup/vkSetup.h>
  * **************************************************************************
  */
 
@@ -20,7 +20,7 @@ int main() {
 
 	Vulkan::setupInstance(&instance); // creates the instance and debugmessenger // 
 
-	Window::setup();
+	Window::setup(instance.instance);
 
 	std::vector<HWND> win_handle_list;
 
@@ -32,4 +32,6 @@ int main() {
 	std::cout << win_handle_list.size();
 
 	Vulkan::destroyInstance(&instance);
+
+	
 }

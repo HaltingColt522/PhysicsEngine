@@ -2,7 +2,7 @@
 
 #include <vkSetup/physicalDevice.h>
 #include <vkSetup/logicalDevice.h>
-#include <vkSetup/swapchain.h>
+#include <vkSetup/swapchain/swapchain.h>
 #include <vkSetup/imageView.h>
 #include <vkSetup/debug.h>
 
@@ -28,18 +28,16 @@ void Vulkan::winsetup(WINDOW* window, VkInstance instance, HWND handle) {
 	createImageViews(window);
 }
 
-void Vulkan::cleanup(WINDOW* window, INSTANCE instance) {
+void Vulkan::cleanup(WINDOW* window, VkInstance instance) {
 	for (auto imageView : window->swapChainImageViews) {
 		vkDestroyImageView(window->device, imageView, nullptr);
 	}
+	
+	vkDeviceWaitIdle(window->device);
 
 	vkDestroySwapchainKHR(window->device, window->swapChain, nullptr);
+	
+	vkDestroySurfaceKHR(instance, window->surface, nullptr);
+
 	vkDestroyDevice(window->device, nullptr);
-
-	if (enableValidationLayers) {
-		Debug::DestroyDebugUtilsMessengerEXT(instance.instance, instance.debugMessenger, nullptr);
-	}
-
-	vkDestroySurfaceKHR(instance.instance, window->surface, nullptr);
-
 }

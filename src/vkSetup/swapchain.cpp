@@ -1,5 +1,6 @@
 #include <vkSetup/queueFamily.h>
-#include <vkSetup/swapchain.h>
+#include <vkSetup/swapchain/swapchain.h>
+#include <vkSetup/swapchain/swapchainsupportdetails.h>
 
 VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
 VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
