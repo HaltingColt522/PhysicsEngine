@@ -5,6 +5,7 @@
 #include <vkSetup/swapchain/swapchain.h>
 #include <vkSetup/imageView.h>
 #include <vkSetup/debug.h>
+#include <vkSetup/renderPass.h>
 
 void Vulkan::winsetup(WINDOW* window, VkInstance instance, HWND handle) {
 
@@ -26,6 +27,8 @@ void Vulkan::winsetup(WINDOW* window, VkInstance instance, HWND handle) {
 	createSwapChain(window, handle);
 
 	createImageViews(window);
+
+	createRenderPass(window);
 }
 
 void Vulkan::cleanup(WINDOW* window, VkInstance instance) {
@@ -38,6 +41,12 @@ void Vulkan::cleanup(WINDOW* window, VkInstance instance) {
 	vkDestroySwapchainKHR(window->device, window->swapChain, nullptr);
 	
 	vkDestroySurfaceKHR(instance, window->surface, nullptr);
+
+	vkDestroyRenderPass(window->device, window->renderPass, nullptr);
+
+	for (VkPipeline graphicsPipeline : window->graphicsPipeline) {
+		vkDestroyPipeline(window->device, graphicsPipeline, nullptr);
+	}
 
 	vkDestroyDevice(window->device, nullptr);
 }

@@ -1,37 +1,62 @@
-/*
- * ************************** PHYSICS - ENGINE ******************************
- * Project: PhysicsEngine
- * Filename: main.cpp
- * Description:
- * Author: github/tilschaller ||| github/HaltingColt522
- * Created: 2024-04-07 11:35 pm UTC 
- * Last Modified: 2024-07-17
- * Version: 1.0.X It will become 1.1 when Win32 is merged into Main
- * Dependencies: <main.h>, <win32Window.h>, <vkSetup/vkSetup.h>
- * **************************************************************************
- */
-
 #include <main.h>
 #include <vkSetup/vkSetup.h>
 #include <win32Window.h>
+#include <draw.h>
 
 int main() {
-	INSTANCE instance; // Instance and DebugMessenger //
+	////////////////////////////
+	//       SETUP            //
+	///////////////////////////
 
-	Vulkan::setupInstance(&instance); // creates the instance and debugmessenger // 
+	INSTANCE instance;
+
+	Vulkan::setupInstance(&instance);
 
 	Window::setup(instance.instance);
 
+	///////////////////////////
+	//  CREATE WINDOW/S      //
+	///////////////////////////
+
 	std::vector<HWND> win_handle_list;
 
-	win_handle_list.push_back(Window::create(instance.instance, "test1"));
-	win_handle_list.push_back(Window::create(instance.instance, "test2"));
+	win_handle_list.push_back(Window::create(instance.instance, "Physics Engine"));
 
-	Window::mainloop(&win_handle_list);
+	// create graphicsPipeline //
+	VkPipeline graphicsPipeline;
+	Draw::createGraphicsPipeline(win_handle_list[0], "shaders/vert.spv", "shaders/frag.spv");
 
-	std::cout << win_handle_list.size();
+	////////////////////////////
+	//      MAINLOOP          //
+	////////////////////////////
+
+	MSG msg = { };
+	bool NOWINDOW = TRUE;
+	int counter = -1;
+
+	while (GetMessage(&msg, NULL, 0, 0) > 0)
+	{
+		//check if there is a window
+		for (HWND window : win_handle_list) {
+			counter += 1;
+			if (IsWindow(window)) { NOWINDOW = FALSE; }
+			else { win_handle_list.erase(win_handle_list.begin() + counter); }
+		}
+		counter = -1;
+
+		if (NOWINDOW == FALSE) {
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		else {
+			PostQuitMessage(0);
+		}
+		NOWINDOW = TRUE;
+	}
+
+	///////////////////////////////
+	//       CLEANUP             //
+	///////////////////////////////
 
 	Vulkan::destroyInstance(&instance);
-
-	
 }

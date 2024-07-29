@@ -12,6 +12,7 @@
 #include <limits>
 #include <algorithm>
 #include <thread>
+#include <string>
 
 #include <map>
 #include <optional>
@@ -52,4 +53,7 @@ struct WINDOW {
     VkFormat swapChainImageFormat;
     VkExtent2D swapChainExtent;
     std::vector<VkImageView> swapChainImageViews;
+
+    VkRenderPass renderPass;
+    std::vector<VkPipeline> graphicsPipeline;
 };
