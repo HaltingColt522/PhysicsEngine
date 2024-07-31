@@ -56,4 +56,6 @@ struct WINDOW {
 
     VkRenderPass renderPass;
     std::vector<VkPipeline> graphicsPipeline;
+
+    std::vector<VkFramebuffer> swapChainFramebuffers;
 };

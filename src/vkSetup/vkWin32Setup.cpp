@@ -6,6 +6,7 @@
 #include <vkSetup/imageView.h>
 #include <vkSetup/debug.h>
 #include <vkSetup/renderPass.h>
+#include <vkSetup/framebuffer.h>
 
 void Vulkan::winsetup(WINDOW* window, VkInstance instance, HWND handle) {
 
@@ -29,10 +30,12 @@ void Vulkan::winsetup(WINDOW* window, VkInstance instance, HWND handle) {
 	createImageViews(window);
 
 	createRenderPass(window);
+
+	createFramebuffer(window);
 }
 
 void Vulkan::cleanup(WINDOW* window, VkInstance instance) {
-	for (auto imageView : window->swapChainImageViews) {
+	for (VkImageView imageView : window->swapChainImageViews) {
 		vkDestroyImageView(window->device, imageView, nullptr);
 	}
 	
@@ -46,6 +49,10 @@ void Vulkan::cleanup(WINDOW* window, VkInstance instance) {
 
 	for (VkPipeline graphicsPipeline : window->graphicsPipeline) {
 		vkDestroyPipeline(window->device, graphicsPipeline, nullptr);
+	}
+
+	for (VkFramebuffer framebuffer : window->swapChainFramebuffers) {
+		vkDestroyFramebuffer(window->device, framebuffer, nullptr);
 	}
 
 	vkDestroyDevice(window->device, nullptr);
