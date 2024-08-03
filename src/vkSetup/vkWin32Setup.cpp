@@ -7,6 +7,8 @@
 #include <vkSetup/debug.h>
 #include <vkSetup/renderPass.h>
 #include <vkSetup/framebuffer.h>
+#include <vkSetup/command.h>
+#include <vkSetup/syncObject.h>
 
 void Vulkan::winsetup(WINDOW* window, VkInstance instance, HWND handle) {
 
@@ -32,16 +34,18 @@ void Vulkan::winsetup(WINDOW* window, VkInstance instance, HWND handle) {
 	createRenderPass(window);
 
 	createFramebuffer(window);
+
+	createCommandPool(window);
+
+	createCommandBuffers(window);
+
+	createSyncObjects(window);
 }
 
 void Vulkan::cleanup(WINDOW* window, VkInstance instance) {
-	for (VkImageView imageView : window->swapChainImageViews) {
-		vkDestroyImageView(window->device, imageView, nullptr);
-	}
-	
 	vkDeviceWaitIdle(window->device);
 
-	vkDestroySwapchainKHR(window->device, window->swapChain, nullptr);
+	cleanupSwapchain(window);
 	
 	vkDestroySurfaceKHR(instance, window->surface, nullptr);
 
@@ -51,8 +55,12 @@ void Vulkan::cleanup(WINDOW* window, VkInstance instance) {
 		vkDestroyPipeline(window->device, graphicsPipeline, nullptr);
 	}
 
-	for (VkFramebuffer framebuffer : window->swapChainFramebuffers) {
-		vkDestroyFramebuffer(window->device, framebuffer, nullptr);
+	vkDestroyCommandPool(window->device, window->commandPool, nullptr);
+
+	for (size_t i = 0; i < Const::MAX_FRAMES_IN_FLIGHT; i++) {
+		vkDestroySemaphore(window->device, window->renderFinishedSemaphores[i], nullptr);
+		vkDestroySemaphore(window->device, window->imageAvailableSemaphores[i], nullptr);
+		vkDestroyFence(window->device, window->inFlightFences[i], nullptr);
 	}
 
 	vkDestroyDevice(window->device, nullptr);

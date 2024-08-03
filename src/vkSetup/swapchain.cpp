@@ -2,6 +2,9 @@
 #include <vkSetup/swapchain/swapchain.h>
 #include <vkSetup/swapchain/swapchainsupportdetails.h>
 
+#include <vkSetup/imageView.h>
+#include <vkSetup/framebuffer.h>
+
 VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
 VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities, HWND handle);
@@ -132,4 +135,26 @@ VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities, HWND h
 
         return actualExtent;
     }
+}
+
+void cleanupSwapchain(WINDOW* window) {
+    for (size_t i = 0; i < window->swapChainFramebuffers.size(); i++) {
+        vkDestroyFramebuffer(window->device, window->swapChainFramebuffers[i], nullptr);
+    }
+
+    for (size_t i = 0; i < window->swapChainImageViews.size(); i++) {
+        vkDestroyImageView(window->device, window->swapChainImageViews[i], nullptr);
+    }
+
+    vkDestroySwapchainKHR(window->device, window->swapChain, nullptr);
+}
+
+void recreateSwapchain(WINDOW* window, HWND hwnd) {
+    vkDeviceWaitIdle(window->device);
+
+    cleanupSwapchain(window);
+
+    createSwapChain(window, hwnd);
+    createImageViews(window);
+    createFramebuffer(window);
 }

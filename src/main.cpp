@@ -45,6 +45,7 @@ int main() {
 		counter = -1;
 
 		if (NOWINDOW == FALSE) {
+			Draw::drawFrame(win_handle_list[0]); //maybe this shouls 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}

@@ -47,7 +47,6 @@ HWND Window::create(VkInstance instance, LPCSTR winheader) {
 
     SetWindowLongPtr(hwnd, 0, (LONG_PTR)window); // store window struct in hwnd
 
-    
     if (GetClassLongPtr(hwnd, 0) == 0) {
         SetClassLongPtr(hwnd, 0, (LONG_PTR)instance);
     }

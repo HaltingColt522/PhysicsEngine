@@ -54,8 +54,19 @@ struct WINDOW {
     VkExtent2D swapChainExtent;
     std::vector<VkImageView> swapChainImageViews;
 
-    VkRenderPass renderPass;
+    VkRenderPass renderPass; 
     std::vector<VkPipeline> graphicsPipeline;
 
     std::vector<VkFramebuffer> swapChainFramebuffers;
+
+    VkCommandPool commandPool;
+    std::vector<VkCommandBuffer> commandBuffers;
+
+    std::vector<VkSemaphore> imageAvailableSemaphores;
+    std::vector<VkSemaphore> renderFinishedSemaphores;
+    std::vector<VkFence> inFlightFences;
+
+    uint32_t currentFrame = 0;
+
+    bool framebufferResized = false;
 };
