@@ -21,6 +21,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
         if (window != nullptr) {
             window->framebufferResized = true;
         }
+        return 0;
     }
 
     case WM_PAINT: {
